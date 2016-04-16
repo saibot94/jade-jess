@@ -14,3 +14,13 @@ To run the test code, do the following:
 	- arguments should be: -gui myagent:hello.HelloAgent
 
 3. Run the application and see hello world displayed by the agent
+
+
+To run the book code:
+
+1. Set arguments something similar to:
+	- -gui buyer:book.BookBuyerAgent("Harry Potter");seller1:book.BookSellerAgent;seller2:book.BookSellerAgent
+
+2. Add some books in the gui's
+
+3. Watch as the agent buys the one with the best price
