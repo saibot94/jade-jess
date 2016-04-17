@@ -9,7 +9,7 @@ public class FactAssertingAgent extends JessAgentBase {
 
 	@Override
 	protected void setup() {
-		addBehaviour(new FactSendingBehaviour(this, "(product (name \"Potato\") (type veg))"));
+		addBehaviour(new FactSendingBehaviour(this, 1));
 
         printStatus("started up!");
     }

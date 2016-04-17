@@ -17,7 +17,7 @@ public class JessBehaviour extends JessBehaviourBase {
 	private jess.Rete jess;
 	// maximum number of passes that a run of Jess can execute before giving
 	// control to the agent
-	private static final int MAX_JESS_PASSES = 1;
+	private static final int MAX_JESS_PASSES = 3;
 
 	public JessBehaviour(Agent agent, String jessFile){
 		super(agent);
@@ -28,7 +28,8 @@ public class JessBehaviour extends JessBehaviourBase {
 			Jesp jessParser = new Jesp(fr, jess);
 			try{
 				jessParser.parse(false);
-			}
+                jess.executeCommand("(watch all)");
+            }
 			catch(JessException je){
 				je.printStackTrace();
 			}
@@ -43,12 +44,12 @@ public class JessBehaviour extends JessBehaviourBase {
 	public void action() {
 		int executedPasses = -1;
 		try{
-			executedPasses = jess.run(MAX_JESS_PASSES);
-		}
+            executedPasses = jess.run(MAX_JESS_PASSES);
+            jess.executeCommand("(facts)");
+        }
 		catch(JessException je){
 			je.printStackTrace();
 		}
-		
 		if(executedPasses < MAX_JESS_PASSES){
 			block();
 		}
@@ -59,13 +60,15 @@ public class JessBehaviour extends JessBehaviourBase {
 	boolean addFact(String jessFact){
 		try{
 			jess.assertString(jessFact);
-			jess.executeCommand("(facts)");
 		}
 		catch(JessException je){
 			je.printStackTrace();
 			return false;
 		}
-		return true;
+
+        if(!isRunnable()) restart();
+
+        return true;
 	}
 
 	
