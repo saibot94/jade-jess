@@ -4,7 +4,7 @@ This application shows how JADE (Java Agent Development Agent) can be mixed with
 
 ### Installation
 
-To run the test code, do the following:
+_To run the test code, do the following:_
 
 1. Extract the lib folder's contents and add jade.jar and jess.jar to the classpath
 
@@ -16,7 +16,7 @@ To run the test code, do the following:
 3. Run the application and see hello world displayed by the agent
 
 
-To run the book code:
+_To run the book code:_
 
 1. Set arguments something similar to:
 	- -gui buyer:book.BookBuyerAgent("Harry Potter");seller1:book.BookSellerAgent;seller2:book.BookSellerAgent
@@ -25,9 +25,9 @@ To run the book code:
 
 3. Watch as the agent buys the one with the best price
 
-To run the jess code:
+_To run the jess code:_
 
 1. Set the arguments to:
-    - -gui jess:jess.JessEngineAgent;factsender1:facts.FactAssertingAgent
+    - -gui jess:jess.JessEngineAgent;sensor1:temp.TemperatureSensorAgent("35.0");sensor2:temp.TemperatureSensorAgent("11.0");master:jess.Master
 
 2. See the fact being asserted in the jess code and being printed on the screen
