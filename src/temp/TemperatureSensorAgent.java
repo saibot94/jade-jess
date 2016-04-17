@@ -1,13 +1,13 @@
-package jessapp;
+package temp;
 
-import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
-import jade.core.behaviours.TickerBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jess.JessAgentBase;
 
 public class TemperatureSensorAgent extends JessAgentBase {
     private double temperature;
+    private TemperatureChangeBehaviour tempChangeBehaviour;
 
     public double getTemperature() {
         return temperature;
@@ -41,7 +41,17 @@ public class TemperatureSensorAgent extends JessAgentBase {
             }
         });
 
-        addBehaviour(new TemperatureChangeBehaviour(this, 3000));
+        // this action is called by the jess engine to get the temperature
+        addBehaviour(new CyclicBehaviour() {
+            @Override
+            public void action() {
+
+            }
+        });
+        tempChangeBehaviour = new TemperatureChangeBehaviour(this, 3000);
+
+
+        addBehaviour(tempChangeBehaviour);
 
 
         printStatus("started up!");

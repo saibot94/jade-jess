@@ -1,16 +1,9 @@
-package jessapp;
+package jess;
 
 import java.io.FileReader;
 import java.io.IOException;
 
 import jade.core.Agent;
-import jade.core.behaviours.Behaviour;
-import jade.core.behaviours.CyclicBehaviour;
-import jade.lang.acl.ACLMessage;
-import jade.lang.acl.MessageTemplate;
-import jess.Jesp;
-import jess.JessException;
-import jess.Rete;
 
 public class JessBehaviour extends JessBehaviourBase {
 	// the Jess engine
@@ -28,7 +21,6 @@ public class JessBehaviour extends JessBehaviourBase {
 			Jesp jessParser = new Jesp(fr, jess);
 			try{
 				jessParser.parse(false);
-                jess.executeCommand("(watch all)");
             }
 			catch(JessException je){
 				je.printStackTrace();
@@ -45,7 +37,6 @@ public class JessBehaviour extends JessBehaviourBase {
 		int executedPasses = -1;
 		try{
             executedPasses = jess.run(MAX_JESS_PASSES);
-            jess.executeCommand("(facts)");
         }
 		catch(JessException je){
 			je.printStackTrace();

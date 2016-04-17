@@ -1,12 +1,13 @@
-package jessapp;
+package facts;
 
 import jade.core.AID;
 import jade.core.Agent;
 import jade.lang.acl.ACLMessage;
+import jess.JessBehaviourBase;
 
 import java.util.ArrayList;
 
-public class FactSendingBehaviour extends  JessBehaviourBase{
+public class FactSendingBehaviour extends JessBehaviourBase {
     private int initialId;
     public FactSendingBehaviour(Agent agent, int initialId) {
         super(agent);

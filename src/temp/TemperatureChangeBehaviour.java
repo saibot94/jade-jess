@@ -1,6 +1,5 @@
-package jessapp;
+package temp;
 
-import jade.core.Agent;
 import jade.core.behaviours.TickerBehaviour;
 
 public class TemperatureChangeBehaviour extends TickerBehaviour {
@@ -8,6 +7,13 @@ public class TemperatureChangeBehaviour extends TickerBehaviour {
     private TemperatureSensorAgent tempAgent;
     private static final double TEMPERATURE_STEP = 0.5;
 
+    public void setHeatingIsRunning(boolean heatingIsRunning) {
+        this.heatingIsRunning = heatingIsRunning;
+    }
+
+    public boolean getHeatingIsRunning(){
+        return this.heatingIsRunning;
+    }
 
     public TemperatureChangeBehaviour(TemperatureSensorAgent agent, long millis){
         super(agent, millis);

@@ -1,4 +1,6 @@
-package jessapp;
+package facts;
+
+import jess.JessAgentBase;
 
 public class FactAssertingAgent extends JessAgentBase {
 

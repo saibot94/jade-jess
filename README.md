@@ -28,6 +28,6 @@ To run the book code:
 To run the jess code:
 
 1. Set the arguments to:
-    - -gui jess:jessapp.JessEngineAgent;factsender1:jessapp.FactAssertingAgent
+    - -gui jess:jess.JessEngineAgent;factsender1:facts.FactAssertingAgent
 
 2. See the fact being asserted in the jess code and being printed on the screen

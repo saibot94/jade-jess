@@ -1,4 +1,4 @@
-package jessapp;
+package jess;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;

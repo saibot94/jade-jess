@@ -1,4 +1,4 @@
-package jessapp;
+package jess;
 
 import java.util.ArrayList;
 

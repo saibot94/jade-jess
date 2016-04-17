@@ -1,6 +1,4 @@
-package jessapp;
-
-import jade.core.Agent;
+package jess;
 
 public class JessEngineAgent extends JessAgentBase {
 	private JessBehaviour jessBehaviour;
