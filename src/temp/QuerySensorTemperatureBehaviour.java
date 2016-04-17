@@ -16,6 +16,7 @@ public class QuerySensorTemperatureBehaviour extends JessBehaviourBase {
     private int step = 0;
     private int allAgents;
     private int replyCnt  = 0;
+
     public QuerySensorTemperatureBehaviour(Agent agent){
         super(agent);
     }
@@ -42,21 +43,27 @@ public class QuerySensorTemperatureBehaviour extends JessBehaviourBase {
         allAgents = agents.size();
 
         myAgent.send(msg);
+        step = 1;
     }
 
     private void getRepliesFromAgents(){
-        ACLMessage msg = myAgent.receive();
+        MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
+        ACLMessage msg = myAgent.receive(mt);
 
-        
+
         if(msg != null){
-            if(msg.getPerformative() == ACLMessage.INFORM){
-                double temp = Double.parseDouble(msg.getContent());
-                ACLMessage engineQuery = new ACLMessage(ACLMessage.CFP);
-                engineQuery.setConversationId("assert");
-                engineQuery.setContent(msg.getSender().getName() + ":" +temp );
-
-                replyCnt++;
+            // take the temperature and send it to jess
+            double temp =  Double.parseDouble(msg.getContent());
+            ACLMessage engineQuery = new ACLMessage(ACLMessage.CFP);
+            engineQuery.setConversationId("assert");
+            engineQuery.setContent(msg.getSender().getName() + ":" + temp);
+            ArrayList<AID> jessEngines = findAgentsOfType("jess-engine");
+            for(AID engine : jessEngines){
+                engineQuery.addReceiver(engine);
             }
+
+            myAgent.send(engineQuery);
+            replyCnt++;
         }
         else{
             block();

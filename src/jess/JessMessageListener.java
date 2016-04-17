@@ -23,7 +23,10 @@ public class JessMessageListener extends CyclicBehaviour{
 			MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.CFP);
 			ACLMessage msg = myAgent.receive(mt);
 			if(msg != null){
-				if(jessBehaviour.addFact(msg.getContent())){
+                if(msg.getConversationId() == "assert"){
+                    System.out.println("I got for assertion: "  +  msg.getContent());
+                }
+                else if(jessBehaviour.addFact(msg.getContent())){
 					System.out.println("Succesfully asserted a fact!");
 				}
 				else{
