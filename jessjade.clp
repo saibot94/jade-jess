@@ -14,4 +14,3 @@
     (assert (order (product-id ?id) (quantity 1))))
 
 (reset)
-(run)
