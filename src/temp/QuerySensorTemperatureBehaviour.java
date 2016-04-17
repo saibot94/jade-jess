@@ -56,7 +56,7 @@ public class QuerySensorTemperatureBehaviour extends JessBehaviourBase {
             double temp =  Double.parseDouble(msg.getContent());
             ACLMessage engineQuery = new ACLMessage(ACLMessage.CFP);
             engineQuery.setConversationId("assert");
-            engineQuery.setContent(msg.getSender().getName() + ":" + temp);
+            engineQuery.setContent(msg.getSender().getLocalName() + ":" + temp);
             ArrayList<AID> jessEngines = findAgentsOfType("jess-engine");
             for(AID engine : jessEngines){
                 engineQuery.addReceiver(engine);

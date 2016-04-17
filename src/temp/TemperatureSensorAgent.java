@@ -41,11 +41,31 @@ public class TemperatureSensorAgent extends JessAgentBase {
             }
         });
 
-        // this action is called by the jess engine to get the temperature
+        // this action is called by the jess engine to calibrate the temperature
         addBehaviour(new CyclicBehaviour() {
             @Override
             public void action() {
+                MessageTemplate mt = MessageTemplate.MatchPerformative(ACLMessage.PROPOSE);
+                ACLMessage msg = myAgent.receive(mt);
+                if(msg != null){
+                    String content = msg.getContent();
+                    if("cool".equals(content))
+                        tempChangeBehaviour.setHeatingIsRunning(false);
+                    else if("heat".equals(content)){
+                        tempChangeBehaviour.setHeatingIsRunning(true);
+                    }
+                    printStatus("beginning to " + content);
 
+                    ACLMessage reply = msg.createReply();
+                    reply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+                    reply.setConversationId("clean");
+
+                    send(reply);
+
+                }
+                else{
+                    block();
+                }
             }
         });
         tempChangeBehaviour = new TemperatureChangeBehaviour(this, 3000);
