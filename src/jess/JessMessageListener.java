@@ -47,7 +47,6 @@ public class JessMessageListener extends CyclicBehaviour{
     private void cleanUpForSensor(ACLMessage msg) {
         String sensorId = msg.getSender().getLocalName();
         System.out.println("Cleaning temp for sensor: " + sensorId);
-
         jessBehaviour.removeFacts("modify-temperature");
     }
 
@@ -65,12 +64,6 @@ public class JessMessageListener extends CyclicBehaviour{
 
                 calibrations.add(new CalibrateSensorTemperatureBehaviour(myAgent, sensorId, needsCooling, needsHeating));
             }
-//            if(jessBehaviour.addFact("(cleanup-temperatures)")){
-//                System.out.println("Cleaned up temperatures");
-//            }
-//            else {
-//                System.err.println("Could not clean temperatures");
-//            }
         }
 
         calibrations.forEach(myAgent::addBehaviour);
