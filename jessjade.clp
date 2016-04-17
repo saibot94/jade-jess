@@ -1,6 +1,6 @@
 (deftemplate product 
     (slot name) 
-    (slot value))
+    (slot type))
 
 
 (reset)

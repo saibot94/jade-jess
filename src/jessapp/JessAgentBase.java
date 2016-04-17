@@ -32,6 +32,7 @@ public class JessAgentBase extends Agent {
 		dfd.addServices(sd);
 		try {
 			DFService.register(this, dfd);
+			printStatus("registered on dfd");
 		} catch (FIPAException fe) {
 			System.err.println("ERR: Couldn't register as the specified type");
 		}

@@ -12,9 +12,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 
 public abstract class JessBehaviourBase extends Behaviour {
 
-	/**
-	 * 
-	 */
+    protected boolean done = false;
 	private static final long serialVersionUID = 1L;
 
 	public JessBehaviourBase(Agent agent) {
@@ -40,5 +38,11 @@ public abstract class JessBehaviourBase extends Behaviour {
 		}
 
 		return agents;
+	}
+
+
+	@Override
+	public boolean done() {
+		return done;
 	}
 }

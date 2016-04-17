@@ -21,7 +21,8 @@ public class JessBehaviour extends JessBehaviourBase {
 
 	public JessBehaviour(Agent agent, String jessFile){
 		super(agent);
-		Rete jess = new Rete();
+		System.out.println("Working directory: " + System.getProperty("user.dir"));
+        jess = new Rete();
 		try{
 			FileReader fr = new FileReader(jessFile);
 			Jesp jessParser = new Jesp(fr, jess);
@@ -67,9 +68,5 @@ public class JessBehaviour extends JessBehaviourBase {
 		return true;
 	}
 
-	@Override
-	public boolean done() {
-		return false;
-	}
 	
 }

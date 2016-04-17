@@ -26,6 +26,9 @@ public class JessMessageListener extends CyclicBehaviour{
 				if(jessBehaviour.addFact(msg.getContent())){
 					System.out.println("Succesfully asserted a fact!");
 				}
+				else{
+					System.err.println("Error asserting the fact!");
+				}
 			}
 			else{
 				block();

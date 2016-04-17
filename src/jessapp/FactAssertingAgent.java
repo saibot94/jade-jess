@@ -1,8 +1,5 @@
 package jessapp;
 
-import jade.core.Agent;
-import jade.core.behaviours.OneShotBehaviour;
-
 public class FactAssertingAgent extends JessAgentBase {
 
 	/**
@@ -12,12 +9,8 @@ public class FactAssertingAgent extends JessAgentBase {
 
 	@Override
 	protected void setup() {
-		addBehaviour(new OneShotBehaviour() {
-			
-			@Override
-			public void action() {
-				
-			}
-		});
-	}
+		addBehaviour(new FactSendingBehaviour(this, "(product (name \"Potato\") (type veg))"));
+
+        printStatus("started up!");
+    }
 }

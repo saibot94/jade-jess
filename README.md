@@ -24,3 +24,10 @@ To run the book code:
 2. Add some books in the gui's
 
 3. Watch as the agent buys the one with the best price
+
+To run the jess code:
+
+1. Set the arguments to:
+    - -gui jess:jessapp.JessEngineAgent;factsender1:jessapp.FactAssertingAgent
+
+2. See the fact being asserted in the jess code and being printed on the screen
