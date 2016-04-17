@@ -13,4 +13,19 @@
     =>
     (assert (order (product-id ?id) (quantity 1))))
 
-(reset)
+
+(deftemplate sensorInfo
+    (slot sensorId)
+    (slot temperature)
+    (slot needsHeating
+    (type SYMBOL)
+    (default no)))
+
+(defrule set-is-heating
+?s <- (sensorInfo (sensorId ?sensorId) (temperature ?temperature&:( or (< ?temperature 10 ) (> ?temperature 30) )))
+=>
+(assert (change (sensorId ?sensorId))
+(retract ?s)))
+
+(facts)
+
