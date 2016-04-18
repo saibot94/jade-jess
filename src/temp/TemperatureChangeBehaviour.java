@@ -22,7 +22,7 @@ public class TemperatureChangeBehaviour extends TickerBehaviour {
 
     @Override
     protected void onTick() {
-        if(heatingIsRunning){
+        if(getHeatingIsRunning()){
             tempAgent.setTemperature(tempAgent.getTemperature() + TEMPERATURE_STEP);
         }
         else{

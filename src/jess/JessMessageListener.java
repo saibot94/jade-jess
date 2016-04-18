@@ -1,6 +1,7 @@
 package jess;
 
 import jade.core.Agent;
+import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -47,7 +48,7 @@ public class JessMessageListener extends CyclicBehaviour{
     private void cleanUpForSensor(ACLMessage msg) {
         String sensorId = msg.getSender().getLocalName();
         System.out.println("Cleaning temp for sensor: " + sensorId);
-        jessBehaviour.removeFacts("modify-temperature");
+        jessBehaviour.addFact("( clean-up ( sensorId " + sensorId + " ) )");
     }
 
     private void runTemperatureQuery() {
@@ -65,9 +66,9 @@ public class JessMessageListener extends CyclicBehaviour{
                 calibrations.add(new CalibrateSensorTemperatureBehaviour(myAgent, sensorId, needsCooling, needsHeating));
             }
         }
-
-        calibrations.forEach(myAgent::addBehaviour);
-
+        for(Behaviour b : calibrations){
+        	myAgent.addBehaviour(b);
+        }
         }catch (JessException je){
             je.printStackTrace();
         }

@@ -19,7 +19,7 @@
     (slot temperature))
 
 
-(deftemplate cleanup
+(deftemplate clean-up
     (slot sensorId))
 
 
@@ -57,7 +57,15 @@
 	(declare (variables ?sensorId))
     (modify-temperature (sensorId ?sensorId)))
 
+(defrule cleanup-for-sensor
+    (clean-up (sensorId ?id))
+    ?t <- (modify-temperature (sensorId ?id))
+     =>
+     (retract ?t))
 
-
-
+(defrule remove-cleanup
+    ?c <- (clean-up (sensorId ?id))
+    (not (modify-temperature (sensorId ?id)))
+    =>
+    (retract ?c))
 
