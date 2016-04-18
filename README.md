@@ -2,6 +2,10 @@
 
 This application shows how JADE (Java Agent Development Agent) can be mixed with the Jess rule engine to allow a distributed multi-agent application.
 
+### Documentation
+
+This readme provides only the installation and running steps that you have to do, please consult the PDF in the folder _docs_.
+
 ### Installation
 
 _To run the test code, do the following:_
@@ -31,3 +35,4 @@ _To run the jess code:_
     - -gui jess:jess.JessEngineAgent;sensor1:temp.TemperatureSensorAgent("35.0");sensor2:temp.TemperatureSensorAgent("11.0");master:jess.Master
 
 2. See the fact being asserted in the jess code and being printed on the screen
+
